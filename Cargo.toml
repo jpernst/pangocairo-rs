@@ -1,0 +1,18 @@
+[package]
+name = "pangocairo-sys"
+version = "0.1.0"
+
+authors = ["Jameson Ernst <j.patrick.ernst@gmail.com>"]
+keywords = ["pangocairo", "pango", "cairo", "text", "drawing", "2D", "graphics"]
+
+build = "build.rs"
+links = "pangocairo"
+
+
+[build-dependencies]
+pkg-config = "*"
+
+[dependencies]
+libc = "*"
+
+

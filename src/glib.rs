@@ -19,11 +19,11 @@ pub type gconstpointer = *const ::libc::c_void;
 pub type GType = ::libc::size_t;
 pub type GQuark = u32;
 
-pub type GFunc = fn (data : gpointer, userdata : gpointer);
-pub type GCopyFunc = fn (src : gconstpointer, data : gpointer) -> gpointer;
-pub type GCompareFunc = fn (a : gconstpointer, b : gconstpointer) -> gint;
-pub type GCompareDataFunc = fn (a : gconstpointer, b : gconstpointer, user_data : gpointer) -> gint;
-pub type GDestroyNotify = fn (data : gpointer);
+pub type GFunc = extern "C" fn (data : gpointer, userdata : gpointer);
+pub type GCopyFunc = extern "C" fn (src : gconstpointer, data : gpointer) -> gpointer;
+pub type GCompareFunc = extern "C" fn (a : gconstpointer, b : gconstpointer) -> gint;
+pub type GCompareDataFunc = extern "C" fn (a : gconstpointer, b : gconstpointer, user_data : gpointer) -> gint;
+pub type GDestroyNotify = extern "C" fn (data : gpointer);
 
 
 extern "C"
@@ -57,21 +57,21 @@ extern "C" {
     //pub fn g_error_new_valist(domain: GQuark, code: gint,
                               //format: *const gchar, args: va_list)
      //-> *mut GError;
-    pub fn g_error_free(error: *mut GError) -> ();
+    pub fn g_error_free(error: *mut GError) ;
     pub fn g_error_copy(error: *const GError) -> *mut GError;
     pub fn g_error_matches(error: *const GError, domain: GQuark, code: gint)
      -> gboolean;
     pub fn g_set_error(err: *mut *mut GError, domain: GQuark, code: gint,
-                       format: *const gchar, ...) -> ();
+                       format: *const gchar, ...) ;
     pub fn g_set_error_literal(err: *mut *mut GError, domain: GQuark,
-                               code: gint, message: *const gchar) -> ();
-    pub fn g_propagate_error(dest: *mut *mut GError, src: *mut GError) -> ();
-    pub fn g_clear_error(err: *mut *mut GError) -> ();
+                               code: gint, message: *const gchar) ;
+    pub fn g_propagate_error(dest: *mut *mut GError, src: *mut GError) ;
+    pub fn g_clear_error(err: *mut *mut GError) ;
     pub fn g_prefix_error(err: *mut *mut GError, format: *const gchar, ...)
-     -> ();
+     ;
     pub fn g_propagate_prefixed_error(dest: *mut *mut GError,
                                       src: *mut GError,
-                                      format: *const gchar, ...) -> ();
+                                      format: *const gchar, ...) ;
 }
 
 // glist.h
@@ -91,10 +91,10 @@ impl ::std::default::Default for Struct__GList {
 }
 extern "C" {
     pub fn g_list_alloc() -> *mut GList;
-    pub fn g_list_free(list: *mut GList) -> ();
-    pub fn g_list_free_1(list: *mut GList) -> ();
+    pub fn g_list_free(list: *mut GList) ;
+    pub fn g_list_free_1(list: *mut GList) ;
     pub fn g_list_free_full(list: *mut GList, free_func: GDestroyNotify)
-     -> ();
+     ;
     pub fn g_list_append(list: *mut GList, data: gpointer) -> *mut GList;
     pub fn g_list_prepend(list: *mut GList, data: gpointer) -> *mut GList;
     pub fn g_list_insert(list: *mut GList, data: gpointer, position: gint)
@@ -129,7 +129,7 @@ extern "C" {
     pub fn g_list_first(list: *mut GList) -> *mut GList;
     pub fn g_list_length(list: *mut GList) -> guint;
     pub fn g_list_foreach(list: *mut GList, func: GFunc, user_data: gpointer)
-     -> ();
+     ;
     pub fn g_list_sort(list: *mut GList, compare_func: GCompareFunc)
      -> *mut GList;
     pub fn g_list_sort_with_data(list: *mut GList,
@@ -172,7 +172,7 @@ pub struct Struct__GMarkupParser {
                                                                gpointer,
                                                            error:
                                                                *mut *mut GError)
-                                                 -> ()>,
+                                                 >,
     pub end_element: ::std::option::Option<extern "C" fn(context:
                                                              *mut GMarkupParseContext,
                                                          element_name:
@@ -180,14 +180,14 @@ pub struct Struct__GMarkupParser {
                                                          user_data: gpointer,
                                                          error:
                                                              *mut *mut GError)
-                                               -> ()>,
+                                               >,
     pub text: ::std::option::Option<extern "C" fn(context:
                                                       *mut GMarkupParseContext,
                                                   text: *const gchar,
                                                   text_len: gsize,
                                                   user_data: gpointer,
                                                   error: *mut *mut GError)
-                                        -> ()>,
+                                        >,
     pub passthrough: ::std::option::Option<extern "C" fn(context:
                                                              *mut GMarkupParseContext,
                                                          passthrough_text:
@@ -196,12 +196,12 @@ pub struct Struct__GMarkupParser {
                                                          user_data: gpointer,
                                                          error:
                                                              *mut *mut GError)
-                                               -> ()>,
+                                               >,
     pub error: ::std::option::Option<extern "C" fn(context:
                                                        *mut GMarkupParseContext,
                                                    error: *mut GError,
                                                    user_data: gpointer)
-                                         -> ()>,
+                                         >,
 }
 impl ::std::clone::Clone for Struct__GMarkupParser {
     fn clone(&self) -> Self { *self }
@@ -227,15 +227,15 @@ extern "C" {
     pub fn g_markup_parse_context_ref(context: *mut GMarkupParseContext)
      -> *mut GMarkupParseContext;
     pub fn g_markup_parse_context_unref(context: *mut GMarkupParseContext)
-     -> ();
+     ;
     pub fn g_markup_parse_context_free(context: *mut GMarkupParseContext)
-     -> ();
+     ;
     pub fn g_markup_parse_context_parse(context: *mut GMarkupParseContext,
                                         text: *const gchar, text_len: gssize,
                                         error: *mut *mut GError) -> gboolean;
     pub fn g_markup_parse_context_push(context: *mut GMarkupParseContext,
                                        parser: *const GMarkupParser,
-                                       user_data: gpointer) -> ();
+                                       user_data: gpointer) ;
     pub fn g_markup_parse_context_pop(context: *mut GMarkupParseContext)
      -> gpointer;
     pub fn g_markup_parse_context_end_parse(context: *mut GMarkupParseContext,
@@ -250,7 +250,7 @@ extern "C" {
     pub fn g_markup_parse_context_get_position(context:
                                                    *mut GMarkupParseContext,
                                                line_number: *mut gint,
-                                               char_number: *mut gint) -> ();
+                                               char_number: *mut gint) ;
     pub fn g_markup_parse_context_get_user_data(context:
                                                     *mut GMarkupParseContext)
      -> gpointer;
@@ -285,10 +285,10 @@ impl ::std::default::Default for Struct__GSList {
 }
 extern "C" {
     pub fn g_slist_alloc() -> *mut GSList;
-    pub fn g_slist_free(list: *mut GSList) -> ();
-    pub fn g_slist_free_1(list: *mut GSList) -> ();
+    pub fn g_slist_free(list: *mut GSList) ;
+    pub fn g_slist_free_1(list: *mut GSList) ;
     pub fn g_slist_free_full(list: *mut GSList, free_func: GDestroyNotify)
-     -> ();
+     ;
     pub fn g_slist_append(list: *mut GSList, data: gpointer) -> *mut GSList;
     pub fn g_slist_prepend(list: *mut GSList, data: gpointer) -> *mut GSList;
     pub fn g_slist_insert(list: *mut GSList, data: gpointer, position: gint)
@@ -325,7 +325,7 @@ extern "C" {
     pub fn g_slist_last(list: *mut GSList) -> *mut GSList;
     pub fn g_slist_length(list: *mut GSList) -> guint;
     pub fn g_slist_foreach(list: *mut GSList, func: GFunc,
-                           user_data: gpointer) -> ();
+                           user_data: gpointer) ;
     pub fn g_slist_sort(list: *mut GSList, compare_func: GCompareFunc)
      -> *mut GSList;
     pub fn g_slist_sort_with_data(list: *mut GSList,
@@ -397,13 +397,13 @@ extern "C" {
     pub fn g_string_ascii_down(string: *mut GString) -> *mut GString;
     pub fn g_string_ascii_up(string: *mut GString) -> *mut GString;
     //pub fn g_string_vprintf(string: *mut GString, format: *const gchar,
-                            //args: va_list) -> ();
+                            //args: va_list) ;
     pub fn g_string_printf(string: *mut GString, format: *const gchar, ...)
-     -> ();
+     ;
     //pub fn g_string_append_vprintf(string: *mut GString, format: *const gchar,
-                                   //args: va_list) -> ();
+                                   //args: va_list) ;
     pub fn g_string_append_printf(string: *mut GString,
-                                  format: *const gchar, ...) -> ();
+                                  format: *const gchar, ...) ;
     pub fn g_string_append_uri_escaped(string: *mut GString,
                                        unescaped: *const gchar,
                                        reserved_chars_allowed: *const gchar,

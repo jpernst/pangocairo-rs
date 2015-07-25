@@ -27,7 +27,7 @@ pub type cairo_matrix_t = Struct__cairo_matrix;
 pub enum Struct__cairo_pattern { }
 pub type cairo_pattern_t = Struct__cairo_pattern;
 pub type cairo_destroy_func_t =
-    ::std::option::Option<extern "C" fn(data: *mut ::libc::c_void) -> ()>;
+    ::std::option::Option<extern "C" fn(data: *mut ::libc::c_void) >;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct__cairo_user_data_key {
@@ -415,7 +415,7 @@ pub type cairo_surface_observer_mode_t = ::libc::c_uint;
 pub type cairo_surface_observer_callback_t =
     ::std::option::Option<extern "C" fn(observer: *mut cairo_surface_t,
                                         target: *mut cairo_surface_t,
-                                        data: *mut ::libc::c_void) -> ()>;
+                                        data: *mut ::libc::c_void) >;
 pub type Enum__cairo_surface_type = ::libc::c_uint;
 pub const CAIRO_SURFACE_TYPE_IMAGE: ::libc::c_uint = 0;
 pub const CAIRO_SURFACE_TYPE_PDF: ::libc::c_uint = 1;
@@ -452,7 +452,7 @@ pub type cairo_raster_source_acquire_func_t =
 pub type cairo_raster_source_release_func_t =
     ::std::option::Option<extern "C" fn(pattern: *mut cairo_pattern_t,
                                         callback_data: *mut ::libc::c_void,
-                                        surface: *mut cairo_surface_t) -> ()>;
+                                        surface: *mut cairo_surface_t) >;
 pub type cairo_raster_source_snapshot_func_t =
     ::std::option::Option<extern "C" fn(pattern: *mut cairo_pattern_t,
                                         callback_data: *mut ::libc::c_void)
@@ -465,7 +465,7 @@ pub type cairo_raster_source_copy_func_t =
 pub type cairo_raster_source_finish_func_t =
     ::std::option::Option<extern "C" fn(pattern: *mut cairo_pattern_t,
                                         callback_data: *mut ::libc::c_void)
-                              -> ()>;
+                              >;
 pub type Enum__cairo_pattern_type = ::libc::c_uint;
 pub const CAIRO_PATTERN_TYPE_SOLID: ::libc::c_uint = 0;
 pub const CAIRO_PATTERN_TYPE_SURFACE: ::libc::c_uint = 1;
@@ -500,7 +500,7 @@ extern "C" {
     pub fn cairo_version_string() -> *const ::libc::c_char;
     pub fn cairo_create(target: *mut cairo_surface_t) -> *mut cairo_t;
     pub fn cairo_reference(cr: *mut cairo_t) -> *mut cairo_t;
-    pub fn cairo_destroy(cr: *mut cairo_t) -> ();
+    pub fn cairo_destroy(cr: *mut cairo_t) ;
     pub fn cairo_get_reference_count(cr: *mut cairo_t) -> ::libc::c_uint;
     pub fn cairo_get_user_data(cr: *mut cairo_t,
                                key: *const cairo_user_data_key_t)
@@ -510,111 +510,111 @@ extern "C" {
                                user_data: *mut ::libc::c_void,
                                destroy: cairo_destroy_func_t)
      -> cairo_status_t;
-    pub fn cairo_save(cr: *mut cairo_t) -> ();
-    pub fn cairo_restore(cr: *mut cairo_t) -> ();
-    pub fn cairo_push_group(cr: *mut cairo_t) -> ();
+    pub fn cairo_save(cr: *mut cairo_t) ;
+    pub fn cairo_restore(cr: *mut cairo_t) ;
+    pub fn cairo_push_group(cr: *mut cairo_t) ;
     pub fn cairo_push_group_with_content(cr: *mut cairo_t,
-                                         content: cairo_content_t) -> ();
+                                         content: cairo_content_t) ;
     pub fn cairo_pop_group(cr: *mut cairo_t) -> *mut cairo_pattern_t;
-    pub fn cairo_pop_group_to_source(cr: *mut cairo_t) -> ();
-    pub fn cairo_set_operator(cr: *mut cairo_t, op: cairo_operator_t) -> ();
+    pub fn cairo_pop_group_to_source(cr: *mut cairo_t) ;
+    pub fn cairo_set_operator(cr: *mut cairo_t, op: cairo_operator_t) ;
     pub fn cairo_set_source(cr: *mut cairo_t, source: *mut cairo_pattern_t)
-     -> ();
+     ;
     pub fn cairo_set_source_rgb(cr: *mut cairo_t, red: ::libc::c_double,
                                 green: ::libc::c_double,
-                                blue: ::libc::c_double) -> ();
+                                blue: ::libc::c_double) ;
     pub fn cairo_set_source_rgba(cr: *mut cairo_t, red: ::libc::c_double,
                                  green: ::libc::c_double,
                                  blue: ::libc::c_double,
-                                 alpha: ::libc::c_double) -> ();
+                                 alpha: ::libc::c_double) ;
     pub fn cairo_set_source_surface(cr: *mut cairo_t,
                                     surface: *mut cairo_surface_t,
                                     x: ::libc::c_double, y: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_set_tolerance(cr: *mut cairo_t, tolerance: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_set_antialias(cr: *mut cairo_t, antialias: cairo_antialias_t)
-     -> ();
+     ;
     pub fn cairo_set_fill_rule(cr: *mut cairo_t, fill_rule: cairo_fill_rule_t)
-     -> ();
+     ;
     pub fn cairo_set_line_width(cr: *mut cairo_t, width: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_set_line_cap(cr: *mut cairo_t, line_cap: cairo_line_cap_t)
-     -> ();
+     ;
     pub fn cairo_set_line_join(cr: *mut cairo_t, line_join: cairo_line_join_t)
-     -> ();
+     ;
     pub fn cairo_set_dash(cr: *mut cairo_t, dashes: *const ::libc::c_double,
                           num_dashes: ::libc::c_int, offset: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_set_miter_limit(cr: *mut cairo_t, limit: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_translate(cr: *mut cairo_t, tx: ::libc::c_double,
-                           ty: ::libc::c_double) -> ();
+                           ty: ::libc::c_double) ;
     pub fn cairo_scale(cr: *mut cairo_t, sx: ::libc::c_double,
-                       sy: ::libc::c_double) -> ();
-    pub fn cairo_rotate(cr: *mut cairo_t, angle: ::libc::c_double) -> ();
+                       sy: ::libc::c_double) ;
+    pub fn cairo_rotate(cr: *mut cairo_t, angle: ::libc::c_double) ;
     pub fn cairo_transform(cr: *mut cairo_t, matrix: *const cairo_matrix_t)
-     -> ();
+     ;
     pub fn cairo_set_matrix(cr: *mut cairo_t, matrix: *const cairo_matrix_t)
-     -> ();
-    pub fn cairo_identity_matrix(cr: *mut cairo_t) -> ();
+     ;
+    pub fn cairo_identity_matrix(cr: *mut cairo_t) ;
     pub fn cairo_user_to_device(cr: *mut cairo_t, x: *mut ::libc::c_double,
-                                y: *mut ::libc::c_double) -> ();
+                                y: *mut ::libc::c_double) ;
     pub fn cairo_user_to_device_distance(cr: *mut cairo_t,
                                          dx: *mut ::libc::c_double,
-                                         dy: *mut ::libc::c_double) -> ();
+                                         dy: *mut ::libc::c_double) ;
     pub fn cairo_device_to_user(cr: *mut cairo_t, x: *mut ::libc::c_double,
-                                y: *mut ::libc::c_double) -> ();
+                                y: *mut ::libc::c_double) ;
     pub fn cairo_device_to_user_distance(cr: *mut cairo_t,
                                          dx: *mut ::libc::c_double,
-                                         dy: *mut ::libc::c_double) -> ();
-    pub fn cairo_new_path(cr: *mut cairo_t) -> ();
+                                         dy: *mut ::libc::c_double) ;
+    pub fn cairo_new_path(cr: *mut cairo_t) ;
     pub fn cairo_move_to(cr: *mut cairo_t, x: ::libc::c_double,
-                         y: ::libc::c_double) -> ();
-    pub fn cairo_new_sub_path(cr: *mut cairo_t) -> ();
+                         y: ::libc::c_double) ;
+    pub fn cairo_new_sub_path(cr: *mut cairo_t) ;
     pub fn cairo_line_to(cr: *mut cairo_t, x: ::libc::c_double,
-                         y: ::libc::c_double) -> ();
+                         y: ::libc::c_double) ;
     pub fn cairo_curve_to(cr: *mut cairo_t, x1: ::libc::c_double,
                           y1: ::libc::c_double, x2: ::libc::c_double,
                           y2: ::libc::c_double, x3: ::libc::c_double,
-                          y3: ::libc::c_double) -> ();
+                          y3: ::libc::c_double) ;
     pub fn cairo_arc(cr: *mut cairo_t, xc: ::libc::c_double,
                      yc: ::libc::c_double, radius: ::libc::c_double,
                      angle1: ::libc::c_double, angle2: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_arc_negative(cr: *mut cairo_t, xc: ::libc::c_double,
                               yc: ::libc::c_double, radius: ::libc::c_double,
                               angle1: ::libc::c_double,
-                              angle2: ::libc::c_double) -> ();
+                              angle2: ::libc::c_double) ;
     pub fn cairo_rel_move_to(cr: *mut cairo_t, dx: ::libc::c_double,
-                             dy: ::libc::c_double) -> ();
+                             dy: ::libc::c_double) ;
     pub fn cairo_rel_line_to(cr: *mut cairo_t, dx: ::libc::c_double,
-                             dy: ::libc::c_double) -> ();
+                             dy: ::libc::c_double) ;
     pub fn cairo_rel_curve_to(cr: *mut cairo_t, dx1: ::libc::c_double,
                               dy1: ::libc::c_double, dx2: ::libc::c_double,
                               dy2: ::libc::c_double, dx3: ::libc::c_double,
-                              dy3: ::libc::c_double) -> ();
+                              dy3: ::libc::c_double) ;
     pub fn cairo_rectangle(cr: *mut cairo_t, x: ::libc::c_double,
                            y: ::libc::c_double, width: ::libc::c_double,
-                           height: ::libc::c_double) -> ();
-    pub fn cairo_close_path(cr: *mut cairo_t) -> ();
+                           height: ::libc::c_double) ;
+    pub fn cairo_close_path(cr: *mut cairo_t) ;
     pub fn cairo_path_extents(cr: *mut cairo_t, x1: *mut ::libc::c_double,
                               y1: *mut ::libc::c_double,
                               x2: *mut ::libc::c_double,
-                              y2: *mut ::libc::c_double) -> ();
-    pub fn cairo_paint(cr: *mut cairo_t) -> ();
+                              y2: *mut ::libc::c_double) ;
+    pub fn cairo_paint(cr: *mut cairo_t) ;
     pub fn cairo_paint_with_alpha(cr: *mut cairo_t, alpha: ::libc::c_double)
-     -> ();
-    pub fn cairo_mask(cr: *mut cairo_t, pattern: *mut cairo_pattern_t) -> ();
+     ;
+    pub fn cairo_mask(cr: *mut cairo_t, pattern: *mut cairo_pattern_t) ;
     pub fn cairo_mask_surface(cr: *mut cairo_t, surface: *mut cairo_surface_t,
                               surface_x: ::libc::c_double,
-                              surface_y: ::libc::c_double) -> ();
-    pub fn cairo_stroke(cr: *mut cairo_t) -> ();
-    pub fn cairo_stroke_preserve(cr: *mut cairo_t) -> ();
-    pub fn cairo_fill(cr: *mut cairo_t) -> ();
-    pub fn cairo_fill_preserve(cr: *mut cairo_t) -> ();
-    pub fn cairo_copy_page(cr: *mut cairo_t) -> ();
-    pub fn cairo_show_page(cr: *mut cairo_t) -> ();
+                              surface_y: ::libc::c_double) ;
+    pub fn cairo_stroke(cr: *mut cairo_t) ;
+    pub fn cairo_stroke_preserve(cr: *mut cairo_t) ;
+    pub fn cairo_fill(cr: *mut cairo_t) ;
+    pub fn cairo_fill_preserve(cr: *mut cairo_t) ;
+    pub fn cairo_copy_page(cr: *mut cairo_t) ;
+    pub fn cairo_show_page(cr: *mut cairo_t) ;
     pub fn cairo_in_stroke(cr: *mut cairo_t, x: ::libc::c_double,
                            y: ::libc::c_double) -> cairo_bool_t;
     pub fn cairo_in_fill(cr: *mut cairo_t, x: ::libc::c_double,
@@ -624,38 +624,38 @@ extern "C" {
     pub fn cairo_stroke_extents(cr: *mut cairo_t, x1: *mut ::libc::c_double,
                                 y1: *mut ::libc::c_double,
                                 x2: *mut ::libc::c_double,
-                                y2: *mut ::libc::c_double) -> ();
+                                y2: *mut ::libc::c_double) ;
     pub fn cairo_fill_extents(cr: *mut cairo_t, x1: *mut ::libc::c_double,
                               y1: *mut ::libc::c_double,
                               x2: *mut ::libc::c_double,
-                              y2: *mut ::libc::c_double) -> ();
-    pub fn cairo_reset_clip(cr: *mut cairo_t) -> ();
-    pub fn cairo_clip(cr: *mut cairo_t) -> ();
-    pub fn cairo_clip_preserve(cr: *mut cairo_t) -> ();
+                              y2: *mut ::libc::c_double) ;
+    pub fn cairo_reset_clip(cr: *mut cairo_t) ;
+    pub fn cairo_clip(cr: *mut cairo_t) ;
+    pub fn cairo_clip_preserve(cr: *mut cairo_t) ;
     pub fn cairo_clip_extents(cr: *mut cairo_t, x1: *mut ::libc::c_double,
                               y1: *mut ::libc::c_double,
                               x2: *mut ::libc::c_double,
-                              y2: *mut ::libc::c_double) -> ();
+                              y2: *mut ::libc::c_double) ;
     pub fn cairo_copy_clip_rectangle_list(cr: *mut cairo_t)
      -> *mut cairo_rectangle_list_t;
     pub fn cairo_rectangle_list_destroy(rectangle_list:
                                             *mut cairo_rectangle_list_t)
-     -> ();
+     ;
     pub fn cairo_glyph_allocate(num_glyphs: ::libc::c_int)
      -> *mut cairo_glyph_t;
-    pub fn cairo_glyph_free(glyphs: *mut cairo_glyph_t) -> ();
+    pub fn cairo_glyph_free(glyphs: *mut cairo_glyph_t) ;
     pub fn cairo_text_cluster_allocate(num_clusters: ::libc::c_int)
      -> *mut cairo_text_cluster_t;
-    pub fn cairo_text_cluster_free(clusters: *mut cairo_text_cluster_t) -> ();
+    pub fn cairo_text_cluster_free(clusters: *mut cairo_text_cluster_t) ;
     pub fn cairo_font_options_create() -> *mut cairo_font_options_t;
     pub fn cairo_font_options_copy(original: *const cairo_font_options_t)
      -> *mut cairo_font_options_t;
     pub fn cairo_font_options_destroy(options: *mut cairo_font_options_t)
-     -> ();
+     ;
     pub fn cairo_font_options_status(options: *mut cairo_font_options_t)
      -> cairo_status_t;
     pub fn cairo_font_options_merge(options: *mut cairo_font_options_t,
-                                    other: *const cairo_font_options_t) -> ();
+                                    other: *const cairo_font_options_t) ;
     pub fn cairo_font_options_equal(options: *const cairo_font_options_t,
                                     other: *const cairo_font_options_t)
      -> cairo_bool_t;
@@ -664,7 +664,7 @@ extern "C" {
     pub fn cairo_font_options_set_antialias(options:
                                                 *mut cairo_font_options_t,
                                             antialias: cairo_antialias_t)
-     -> ();
+     ;
     pub fn cairo_font_options_get_antialias(options:
                                                 *const cairo_font_options_t)
      -> cairo_antialias_t;
@@ -672,14 +672,14 @@ extern "C" {
                                                      *mut cairo_font_options_t,
                                                  subpixel_order:
                                                      cairo_subpixel_order_t)
-     -> ();
+     ;
     pub fn cairo_font_options_get_subpixel_order(options:
                                                      *const cairo_font_options_t)
      -> cairo_subpixel_order_t;
     pub fn cairo_font_options_set_hint_style(options:
                                                  *mut cairo_font_options_t,
                                              hint_style: cairo_hint_style_t)
-     -> ();
+     ;
     pub fn cairo_font_options_get_hint_style(options:
                                                  *const cairo_font_options_t)
      -> cairo_hint_style_t;
@@ -687,36 +687,36 @@ extern "C" {
                                                    *mut cairo_font_options_t,
                                                hint_metrics:
                                                    cairo_hint_metrics_t)
-     -> ();
+     ;
     pub fn cairo_font_options_get_hint_metrics(options:
                                                    *const cairo_font_options_t)
      -> cairo_hint_metrics_t;
     pub fn cairo_select_font_face(cr: *mut cairo_t,
                                   family: *const ::libc::c_char,
                                   slant: cairo_font_slant_t,
-                                  weight: cairo_font_weight_t) -> ();
+                                  weight: cairo_font_weight_t) ;
     pub fn cairo_set_font_size(cr: *mut cairo_t, size: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_set_font_matrix(cr: *mut cairo_t,
-                                 matrix: *const cairo_matrix_t) -> ();
+                                 matrix: *const cairo_matrix_t) ;
     pub fn cairo_get_font_matrix(cr: *mut cairo_t,
-                                 matrix: *mut cairo_matrix_t) -> ();
+                                 matrix: *mut cairo_matrix_t) ;
     pub fn cairo_set_font_options(cr: *mut cairo_t,
-                                  options: *const cairo_font_options_t) -> ();
+                                  options: *const cairo_font_options_t) ;
     pub fn cairo_get_font_options(cr: *mut cairo_t,
-                                  options: *mut cairo_font_options_t) -> ();
+                                  options: *mut cairo_font_options_t) ;
     pub fn cairo_set_font_face(cr: *mut cairo_t,
-                               font_face: *mut cairo_font_face_t) -> ();
+                               font_face: *mut cairo_font_face_t) ;
     pub fn cairo_get_font_face(cr: *mut cairo_t) -> *mut cairo_font_face_t;
     pub fn cairo_set_scaled_font(cr: *mut cairo_t,
                                  scaled_font: *const cairo_scaled_font_t)
-     -> ();
+     ;
     pub fn cairo_get_scaled_font(cr: *mut cairo_t)
      -> *mut cairo_scaled_font_t;
     pub fn cairo_show_text(cr: *mut cairo_t, utf8: *const ::libc::c_char)
-     -> ();
+     ;
     pub fn cairo_show_glyphs(cr: *mut cairo_t, glyphs: *const cairo_glyph_t,
-                             num_glyphs: ::libc::c_int) -> ();
+                             num_glyphs: ::libc::c_int) ;
     pub fn cairo_show_text_glyphs(cr: *mut cairo_t,
                                   utf8: *const ::libc::c_char,
                                   utf8_len: ::libc::c_int,
@@ -725,21 +725,21 @@ extern "C" {
                                   clusters: *const cairo_text_cluster_t,
                                   num_clusters: ::libc::c_int,
                                   cluster_flags: cairo_text_cluster_flags_t)
-     -> ();
+     ;
     pub fn cairo_text_path(cr: *mut cairo_t, utf8: *const ::libc::c_char)
-     -> ();
+     ;
     pub fn cairo_glyph_path(cr: *mut cairo_t, glyphs: *const cairo_glyph_t,
-                            num_glyphs: ::libc::c_int) -> ();
+                            num_glyphs: ::libc::c_int) ;
     pub fn cairo_text_extents(cr: *mut cairo_t, utf8: *const ::libc::c_char,
-                              extents: *mut cairo_text_extents_t) -> ();
+                              extents: *mut cairo_text_extents_t) ;
     pub fn cairo_glyph_extents(cr: *mut cairo_t, glyphs: *const cairo_glyph_t,
                                num_glyphs: ::libc::c_int,
-                               extents: *mut cairo_text_extents_t) -> ();
+                               extents: *mut cairo_text_extents_t) ;
     pub fn cairo_font_extents(cr: *mut cairo_t,
-                              extents: *mut cairo_font_extents_t) -> ();
+                              extents: *mut cairo_font_extents_t) ;
     pub fn cairo_font_face_reference(font_face: *mut cairo_font_face_t)
      -> *mut cairo_font_face_t;
-    pub fn cairo_font_face_destroy(font_face: *mut cairo_font_face_t) -> ();
+    pub fn cairo_font_face_destroy(font_face: *mut cairo_font_face_t) ;
     pub fn cairo_font_face_get_reference_count(font_face:
                                                    *mut cairo_font_face_t)
      -> ::libc::c_uint;
@@ -763,7 +763,7 @@ extern "C" {
     pub fn cairo_scaled_font_reference(scaled_font: *mut cairo_scaled_font_t)
      -> *mut cairo_scaled_font_t;
     pub fn cairo_scaled_font_destroy(scaled_font: *mut cairo_scaled_font_t)
-     -> ();
+     ;
     pub fn cairo_scaled_font_get_reference_count(scaled_font:
                                                      *mut cairo_scaled_font_t)
      -> ::libc::c_uint;
@@ -783,18 +783,18 @@ extern "C" {
      -> cairo_status_t;
     pub fn cairo_scaled_font_extents(scaled_font: *mut cairo_scaled_font_t,
                                      extents: *mut cairo_font_extents_t)
-     -> ();
+     ;
     pub fn cairo_scaled_font_text_extents(scaled_font:
                                               *mut cairo_scaled_font_t,
                                           utf8: *const ::libc::c_char,
                                           extents: *mut cairo_text_extents_t)
-     -> ();
+     ;
     pub fn cairo_scaled_font_glyph_extents(scaled_font:
                                                *mut cairo_scaled_font_t,
                                            glyphs: *const cairo_glyph_t,
                                            num_glyphs: ::libc::c_int,
                                            extents: *mut cairo_text_extents_t)
-     -> ();
+     ;
     pub fn cairo_scaled_font_text_to_glyphs(scaled_font:
                                                 *mut cairo_scaled_font_t,
                                             x: ::libc::c_double,
@@ -815,18 +815,18 @@ extern "C" {
     pub fn cairo_scaled_font_get_font_matrix(scaled_font:
                                                  *mut cairo_scaled_font_t,
                                              font_matrix: *mut cairo_matrix_t)
-     -> ();
+     ;
     pub fn cairo_scaled_font_get_ctm(scaled_font: *mut cairo_scaled_font_t,
-                                     ctm: *mut cairo_matrix_t) -> ();
+                                     ctm: *mut cairo_matrix_t) ;
     pub fn cairo_scaled_font_get_scale_matrix(scaled_font:
                                                   *mut cairo_scaled_font_t,
                                               scale_matrix:
-                                                  *mut cairo_matrix_t) -> ();
+                                                  *mut cairo_matrix_t) ;
     pub fn cairo_scaled_font_get_font_options(scaled_font:
                                                   *mut cairo_scaled_font_t,
                                               options:
                                                   *mut cairo_font_options_t)
-     -> ();
+     ;
     pub fn cairo_toy_font_face_create(family: *const ::libc::c_char,
                                       slant: cairo_font_slant_t,
                                       weight: cairo_font_weight_t)
@@ -842,22 +842,22 @@ extern "C" {
                                                   *mut cairo_font_face_t,
                                               init_func:
                                                   cairo_user_scaled_font_init_func_t)
-     -> ();
+     ;
     pub fn cairo_user_font_face_set_render_glyph_func(font_face:
                                                           *mut cairo_font_face_t,
                                                       render_glyph_func:
                                                           cairo_user_scaled_font_render_glyph_func_t)
-     -> ();
+     ;
     pub fn cairo_user_font_face_set_text_to_glyphs_func(font_face:
                                                             *mut cairo_font_face_t,
                                                         text_to_glyphs_func:
                                                             cairo_user_scaled_font_text_to_glyphs_func_t)
-     -> ();
+     ;
     pub fn cairo_user_font_face_set_unicode_to_glyph_func(font_face:
                                                               *mut cairo_font_face_t,
                                                           unicode_to_glyph_func:
                                                               cairo_user_scaled_font_unicode_to_glyph_func_t)
-     -> ();
+     ;
     pub fn cairo_user_font_face_get_init_func(font_face:
                                                   *mut cairo_font_face_t)
      -> cairo_user_scaled_font_init_func_t;
@@ -876,7 +876,7 @@ extern "C" {
     pub fn cairo_get_antialias(cr: *mut cairo_t) -> cairo_antialias_t;
     pub fn cairo_has_current_point(cr: *mut cairo_t) -> cairo_bool_t;
     pub fn cairo_get_current_point(cr: *mut cairo_t, x: *mut ::libc::c_double,
-                                   y: *mut ::libc::c_double) -> ();
+                                   y: *mut ::libc::c_double) ;
     pub fn cairo_get_fill_rule(cr: *mut cairo_t) -> cairo_fill_rule_t;
     pub fn cairo_get_line_width(cr: *mut cairo_t) -> ::libc::c_double;
     pub fn cairo_get_line_cap(cr: *mut cairo_t) -> cairo_line_cap_t;
@@ -884,16 +884,16 @@ extern "C" {
     pub fn cairo_get_miter_limit(cr: *mut cairo_t) -> ::libc::c_double;
     pub fn cairo_get_dash_count(cr: *mut cairo_t) -> ::libc::c_int;
     pub fn cairo_get_dash(cr: *mut cairo_t, dashes: *mut ::libc::c_double,
-                          offset: *mut ::libc::c_double) -> ();
+                          offset: *mut ::libc::c_double) ;
     pub fn cairo_get_matrix(cr: *mut cairo_t, matrix: *mut cairo_matrix_t)
-     -> ();
+     ;
     pub fn cairo_get_target(cr: *mut cairo_t) -> *mut cairo_surface_t;
     pub fn cairo_get_group_target(cr: *mut cairo_t) -> *mut cairo_surface_t;
     pub fn cairo_copy_path(cr: *mut cairo_t) -> *mut cairo_path_t;
     pub fn cairo_copy_path_flat(cr: *mut cairo_t) -> *mut cairo_path_t;
     pub fn cairo_append_path(cr: *mut cairo_t, path: *const cairo_path_t)
-     -> ();
-    pub fn cairo_path_destroy(path: *mut cairo_path_t) -> ();
+     ;
+    pub fn cairo_path_destroy(path: *mut cairo_path_t) ;
     pub fn cairo_status(cr: *mut cairo_t) -> cairo_status_t;
     pub fn cairo_status_to_string(status: cairo_status_t)
      -> *const ::libc::c_char;
@@ -904,10 +904,10 @@ extern "C" {
     pub fn cairo_device_status(device: *mut cairo_device_t) -> cairo_status_t;
     pub fn cairo_device_acquire(device: *mut cairo_device_t)
      -> cairo_status_t;
-    pub fn cairo_device_release(device: *mut cairo_device_t) -> ();
-    pub fn cairo_device_flush(device: *mut cairo_device_t) -> ();
-    pub fn cairo_device_finish(device: *mut cairo_device_t) -> ();
-    pub fn cairo_device_destroy(device: *mut cairo_device_t) -> ();
+    pub fn cairo_device_release(device: *mut cairo_device_t) ;
+    pub fn cairo_device_flush(device: *mut cairo_device_t) ;
+    pub fn cairo_device_finish(device: *mut cairo_device_t) ;
+    pub fn cairo_device_destroy(device: *mut cairo_device_t) ;
     pub fn cairo_device_get_reference_count(device: *mut cairo_device_t)
      -> ::libc::c_uint;
     pub fn cairo_device_get_user_data(device: *mut cairo_device_t,
@@ -932,7 +932,7 @@ extern "C" {
                                       extents: *const cairo_rectangle_int_t)
      -> *mut cairo_surface_t;
     pub fn cairo_surface_unmap_image(surface: *mut cairo_surface_t,
-                                     image: *mut cairo_surface_t) -> ();
+                                     image: *mut cairo_surface_t) ;
     pub fn cairo_surface_create_for_rectangle(target: *mut cairo_surface_t,
                                               x: ::libc::c_double,
                                               y: ::libc::c_double,
@@ -1013,8 +1013,8 @@ extern "C" {
      -> ::libc::c_double;
     pub fn cairo_surface_reference(surface: *mut cairo_surface_t)
      -> *mut cairo_surface_t;
-    pub fn cairo_surface_finish(surface: *mut cairo_surface_t) -> ();
-    pub fn cairo_surface_destroy(surface: *mut cairo_surface_t) -> ();
+    pub fn cairo_surface_finish(surface: *mut cairo_surface_t) ;
+    pub fn cairo_surface_destroy(surface: *mut cairo_surface_t) ;
     pub fn cairo_surface_get_device(surface: *mut cairo_surface_t)
      -> *mut cairo_device_t;
     pub fn cairo_surface_get_reference_count(surface: *mut cairo_surface_t)
@@ -1043,7 +1043,7 @@ extern "C" {
     pub fn cairo_surface_get_mime_data(surface: *mut cairo_surface_t,
                                        mime_type: *const ::libc::c_char,
                                        data: *mut *const ::libc::c_uchar,
-                                       length: *mut ::libc::c_ulong) -> ();
+                                       length: *mut ::libc::c_ulong) ;
     pub fn cairo_surface_set_mime_data(surface: *mut cairo_surface_t,
                                        mime_type: *const ::libc::c_char,
                                        data: *const ::libc::c_uchar,
@@ -1056,43 +1056,43 @@ extern "C" {
      -> cairo_bool_t;
     pub fn cairo_surface_get_font_options(surface: *mut cairo_surface_t,
                                           options: *mut cairo_font_options_t)
-     -> ();
-    pub fn cairo_surface_flush(surface: *mut cairo_surface_t) -> ();
-    pub fn cairo_surface_mark_dirty(surface: *mut cairo_surface_t) -> ();
+     ;
+    pub fn cairo_surface_flush(surface: *mut cairo_surface_t) ;
+    pub fn cairo_surface_mark_dirty(surface: *mut cairo_surface_t) ;
     pub fn cairo_surface_mark_dirty_rectangle(surface: *mut cairo_surface_t,
                                               x: ::libc::c_int,
                                               y: ::libc::c_int,
                                               width: ::libc::c_int,
-                                              height: ::libc::c_int) -> ();
+                                              height: ::libc::c_int) ;
     pub fn cairo_surface_set_device_scale(surface: *mut cairo_surface_t,
                                           x_scale: ::libc::c_double,
-                                          y_scale: ::libc::c_double) -> ();
+                                          y_scale: ::libc::c_double) ;
     pub fn cairo_surface_get_device_scale(surface: *mut cairo_surface_t,
                                           x_scale: *mut ::libc::c_double,
                                           y_scale: *mut ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_surface_set_device_offset(surface: *mut cairo_surface_t,
                                            x_offset: ::libc::c_double,
-                                           y_offset: ::libc::c_double) -> ();
+                                           y_offset: ::libc::c_double) ;
     pub fn cairo_surface_get_device_offset(surface: *mut cairo_surface_t,
                                            x_offset: *mut ::libc::c_double,
                                            y_offset: *mut ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_surface_set_fallback_resolution(surface:
                                                      *mut cairo_surface_t,
                                                  x_pixels_per_inch:
                                                      ::libc::c_double,
                                                  y_pixels_per_inch:
-                                                     ::libc::c_double) -> ();
+                                                     ::libc::c_double) ;
     pub fn cairo_surface_get_fallback_resolution(surface:
                                                      *mut cairo_surface_t,
                                                  x_pixels_per_inch:
                                                      *mut ::libc::c_double,
                                                  y_pixels_per_inch:
                                                      *mut ::libc::c_double)
-     -> ();
-    pub fn cairo_surface_copy_page(surface: *mut cairo_surface_t) -> ();
-    pub fn cairo_surface_show_page(surface: *mut cairo_surface_t) -> ();
+     ;
+    pub fn cairo_surface_copy_page(surface: *mut cairo_surface_t) ;
+    pub fn cairo_surface_show_page(surface: *mut cairo_surface_t) ;
     pub fn cairo_surface_has_show_text_glyphs(surface: *mut cairo_surface_t)
      -> cairo_bool_t;
     pub fn cairo_image_surface_create(format: cairo_format_t,
@@ -1134,7 +1134,7 @@ extern "C" {
                                                y0: *mut ::libc::c_double,
                                                width: *mut ::libc::c_double,
                                                height: *mut ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_recording_surface_get_extents(surface: *mut cairo_surface_t,
                                                extents:
                                                    *mut cairo_rectangle_t)
@@ -1148,7 +1148,7 @@ extern "C" {
                                                              *mut cairo_pattern_t,
                                                          data:
                                                              *mut ::libc::c_void)
-     -> ();
+     ;
     pub fn cairo_raster_source_pattern_get_callback_data(pattern:
                                                              *mut cairo_pattern_t)
      -> *mut ::libc::c_void;
@@ -1158,33 +1158,33 @@ extern "C" {
                                                        cairo_raster_source_acquire_func_t,
                                                    release:
                                                        cairo_raster_source_release_func_t)
-     -> ();
+     ;
     pub fn cairo_raster_source_pattern_get_acquire(pattern:
                                                        *mut cairo_pattern_t,
                                                    acquire:
                                                        *mut cairo_raster_source_acquire_func_t,
                                                    release:
                                                        *mut cairo_raster_source_release_func_t)
-     -> ();
+     ;
     pub fn cairo_raster_source_pattern_set_snapshot(pattern:
                                                         *mut cairo_pattern_t,
                                                     snapshot:
                                                         cairo_raster_source_snapshot_func_t)
-     -> ();
+     ;
     pub fn cairo_raster_source_pattern_get_snapshot(pattern:
                                                         *mut cairo_pattern_t)
      -> cairo_raster_source_snapshot_func_t;
     pub fn cairo_raster_source_pattern_set_copy(pattern: *mut cairo_pattern_t,
                                                 copy:
                                                     cairo_raster_source_copy_func_t)
-     -> ();
+     ;
     pub fn cairo_raster_source_pattern_get_copy(pattern: *mut cairo_pattern_t)
      -> cairo_raster_source_copy_func_t;
     pub fn cairo_raster_source_pattern_set_finish(pattern:
                                                       *mut cairo_pattern_t,
                                                   finish:
                                                       cairo_raster_source_finish_func_t)
-     -> ();
+     ;
     pub fn cairo_raster_source_pattern_get_finish(pattern:
                                                       *mut cairo_pattern_t)
      -> cairo_raster_source_finish_func_t;
@@ -1214,7 +1214,7 @@ extern "C" {
     pub fn cairo_pattern_create_mesh() -> *mut cairo_pattern_t;
     pub fn cairo_pattern_reference(pattern: *mut cairo_pattern_t)
      -> *mut cairo_pattern_t;
-    pub fn cairo_pattern_destroy(pattern: *mut cairo_pattern_t) -> ();
+    pub fn cairo_pattern_destroy(pattern: *mut cairo_pattern_t) ;
     pub fn cairo_pattern_get_reference_count(pattern: *mut cairo_pattern_t)
      -> ::libc::c_uint;
     pub fn cairo_pattern_status(pattern: *mut cairo_pattern_t)
@@ -1233,40 +1233,40 @@ extern "C" {
                                             offset: ::libc::c_double,
                                             red: ::libc::c_double,
                                             green: ::libc::c_double,
-                                            blue: ::libc::c_double) -> ();
+                                            blue: ::libc::c_double) ;
     pub fn cairo_pattern_add_color_stop_rgba(pattern: *mut cairo_pattern_t,
                                              offset: ::libc::c_double,
                                              red: ::libc::c_double,
                                              green: ::libc::c_double,
                                              blue: ::libc::c_double,
-                                             alpha: ::libc::c_double) -> ();
+                                             alpha: ::libc::c_double) ;
     pub fn cairo_mesh_pattern_begin_patch(pattern: *mut cairo_pattern_t)
-     -> ();
-    pub fn cairo_mesh_pattern_end_patch(pattern: *mut cairo_pattern_t) -> ();
+     ;
+    pub fn cairo_mesh_pattern_end_patch(pattern: *mut cairo_pattern_t) ;
     pub fn cairo_mesh_pattern_curve_to(pattern: *mut cairo_pattern_t,
                                        x1: ::libc::c_double,
                                        y1: ::libc::c_double,
                                        x2: ::libc::c_double,
                                        y2: ::libc::c_double,
                                        x3: ::libc::c_double,
-                                       y3: ::libc::c_double) -> ();
+                                       y3: ::libc::c_double) ;
     pub fn cairo_mesh_pattern_line_to(pattern: *mut cairo_pattern_t,
                                       x: ::libc::c_double,
-                                      y: ::libc::c_double) -> ();
+                                      y: ::libc::c_double) ;
     pub fn cairo_mesh_pattern_move_to(pattern: *mut cairo_pattern_t,
                                       x: ::libc::c_double,
-                                      y: ::libc::c_double) -> ();
+                                      y: ::libc::c_double) ;
     pub fn cairo_mesh_pattern_set_control_point(pattern: *mut cairo_pattern_t,
                                                 point_num: ::libc::c_uint,
                                                 x: ::libc::c_double,
-                                                y: ::libc::c_double) -> ();
+                                                y: ::libc::c_double) ;
     pub fn cairo_mesh_pattern_set_corner_color_rgb(pattern:
                                                        *mut cairo_pattern_t,
                                                    corner_num: ::libc::c_uint,
                                                    red: ::libc::c_double,
                                                    green: ::libc::c_double,
                                                    blue: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_mesh_pattern_set_corner_color_rgba(pattern:
                                                         *mut cairo_pattern_t,
                                                     corner_num:
@@ -1275,17 +1275,17 @@ extern "C" {
                                                     green: ::libc::c_double,
                                                     blue: ::libc::c_double,
                                                     alpha: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_pattern_set_matrix(pattern: *mut cairo_pattern_t,
-                                    matrix: *const cairo_matrix_t) -> ();
+                                    matrix: *const cairo_matrix_t) ;
     pub fn cairo_pattern_get_matrix(pattern: *mut cairo_pattern_t,
-                                    matrix: *mut cairo_matrix_t) -> ();
+                                    matrix: *mut cairo_matrix_t) ;
     pub fn cairo_pattern_set_extend(pattern: *mut cairo_pattern_t,
-                                    extend: cairo_extend_t) -> ();
+                                    extend: cairo_extend_t) ;
     pub fn cairo_pattern_get_extend(pattern: *mut cairo_pattern_t)
      -> cairo_extend_t;
     pub fn cairo_pattern_set_filter(pattern: *mut cairo_pattern_t,
-                                    filter: cairo_filter_t) -> ();
+                                    filter: cairo_filter_t) ;
     pub fn cairo_pattern_get_filter(pattern: *mut cairo_pattern_t)
      -> cairo_filter_t;
     pub fn cairo_pattern_get_rgba(pattern: *mut cairo_pattern_t,
@@ -1352,34 +1352,34 @@ extern "C" {
                              xx: ::libc::c_double, yx: ::libc::c_double,
                              xy: ::libc::c_double, yy: ::libc::c_double,
                              x0: ::libc::c_double, y0: ::libc::c_double)
-     -> ();
-    pub fn cairo_matrix_init_identity(matrix: *mut cairo_matrix_t) -> ();
+     ;
+    pub fn cairo_matrix_init_identity(matrix: *mut cairo_matrix_t) ;
     pub fn cairo_matrix_init_translate(matrix: *mut cairo_matrix_t,
                                        tx: ::libc::c_double,
-                                       ty: ::libc::c_double) -> ();
+                                       ty: ::libc::c_double) ;
     pub fn cairo_matrix_init_scale(matrix: *mut cairo_matrix_t,
                                    sx: ::libc::c_double, sy: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_matrix_init_rotate(matrix: *mut cairo_matrix_t,
-                                    radians: ::libc::c_double) -> ();
+                                    radians: ::libc::c_double) ;
     pub fn cairo_matrix_translate(matrix: *mut cairo_matrix_t,
                                   tx: ::libc::c_double, ty: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_matrix_scale(matrix: *mut cairo_matrix_t,
                               sx: ::libc::c_double, sy: ::libc::c_double)
-     -> ();
+     ;
     pub fn cairo_matrix_rotate(matrix: *mut cairo_matrix_t,
-                               radians: ::libc::c_double) -> ();
+                               radians: ::libc::c_double) ;
     pub fn cairo_matrix_invert(matrix: *mut cairo_matrix_t) -> cairo_status_t;
     pub fn cairo_matrix_multiply(result: *mut cairo_matrix_t,
                                  a: *const cairo_matrix_t,
-                                 b: *const cairo_matrix_t) -> ();
+                                 b: *const cairo_matrix_t) ;
     pub fn cairo_matrix_transform_distance(matrix: *const cairo_matrix_t,
                                            dx: *mut ::libc::c_double,
-                                           dy: *mut ::libc::c_double) -> ();
+                                           dy: *mut ::libc::c_double) ;
     pub fn cairo_matrix_transform_point(matrix: *const cairo_matrix_t,
                                         x: *mut ::libc::c_double,
-                                        y: *mut ::libc::c_double) -> ();
+                                        y: *mut ::libc::c_double) ;
     pub fn cairo_region_create() -> *mut cairo_region_t;
     pub fn cairo_region_create_rectangle(rectangle:
                                              *const cairo_rectangle_int_t)
@@ -1391,20 +1391,20 @@ extern "C" {
      -> *mut cairo_region_t;
     pub fn cairo_region_reference(region: *mut cairo_region_t)
      -> *mut cairo_region_t;
-    pub fn cairo_region_destroy(region: *mut cairo_region_t) -> ();
+    pub fn cairo_region_destroy(region: *mut cairo_region_t) ;
     pub fn cairo_region_equal(a: *const cairo_region_t,
                               b: *const cairo_region_t) -> cairo_bool_t;
     pub fn cairo_region_status(region: *const cairo_region_t)
      -> cairo_status_t;
     pub fn cairo_region_get_extents(region: *const cairo_region_t,
                                     extents: *mut cairo_rectangle_int_t)
-     -> ();
+     ;
     pub fn cairo_region_num_rectangles(region: *const cairo_region_t)
      -> ::libc::c_int;
     pub fn cairo_region_get_rectangle(region: *const cairo_region_t,
                                       nth: ::libc::c_int,
                                       rectangle: *mut cairo_rectangle_int_t)
-     -> ();
+     ;
     pub fn cairo_region_is_empty(region: *const cairo_region_t)
      -> cairo_bool_t;
     pub fn cairo_region_contains_rectangle(region: *const cairo_region_t,
@@ -1415,7 +1415,7 @@ extern "C" {
                                        x: ::libc::c_int, y: ::libc::c_int)
      -> cairo_bool_t;
     pub fn cairo_region_translate(region: *mut cairo_region_t,
-                                  dx: ::libc::c_int, dy: ::libc::c_int) -> ();
+                                  dx: ::libc::c_int, dy: ::libc::c_int) ;
     pub fn cairo_region_subtract(dst: *mut cairo_region_t,
                                  other: *const cairo_region_t)
      -> cairo_status_t;
@@ -1441,5 +1441,5 @@ extern "C" {
     pub fn cairo_region_xor_rectangle(dst: *mut cairo_region_t,
                                       rectangle: *const cairo_rectangle_int_t)
      -> cairo_status_t;
-    pub fn cairo_debug_reset_static_data() -> ();
+    pub fn cairo_debug_reset_static_data() ;
 }

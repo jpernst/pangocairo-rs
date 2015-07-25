@@ -15,7 +15,7 @@ pub type PangoCairoShapeRendererFunc =
     ::std::option::Option<extern "C" fn(cr: *mut cairo_t,
                                         attr: *mut PangoAttrShape,
                                         do_path: gboolean, data: gpointer)
-                              -> ()>;
+                              >;
 extern "C" {
     pub fn pango_cairo_font_map_get_type() -> GType;
     pub fn pango_cairo_font_map_new() -> *mut PangoFontMap;
@@ -23,12 +23,12 @@ extern "C" {
      -> *mut PangoFontMap;
     pub fn pango_cairo_font_map_get_default() -> *mut PangoFontMap;
     pub fn pango_cairo_font_map_set_default(fontmap: *mut PangoCairoFontMap)
-     -> ();
+     ;
     pub fn pango_cairo_font_map_get_font_type(fontmap: *mut PangoCairoFontMap)
      -> cairo_font_type_t;
     pub fn pango_cairo_font_map_set_resolution(fontmap:
                                                    *mut PangoCairoFontMap,
-                                               dpi: ::libc::c_double) -> ();
+                                               dpi: ::libc::c_double) ;
     pub fn pango_cairo_font_map_get_resolution(fontmap:
                                                    *mut PangoCairoFontMap)
      -> ::libc::c_double;
@@ -39,15 +39,15 @@ extern "C" {
     pub fn pango_cairo_font_get_scaled_font(font: *mut PangoCairoFont)
      -> *mut cairo_scaled_font_t;
     pub fn pango_cairo_update_context(cr: *mut cairo_t,
-                                      context: *mut PangoContext) -> ();
+                                      context: *mut PangoContext) ;
     pub fn pango_cairo_context_set_font_options(context: *mut PangoContext,
                                                 options:
                                                     *const cairo_font_options_t)
-     -> ();
+     ;
     pub fn pango_cairo_context_get_font_options(context: *mut PangoContext)
      -> *const cairo_font_options_t;
     pub fn pango_cairo_context_set_resolution(context: *mut PangoContext,
-                                              dpi: ::libc::c_double) -> ();
+                                              dpi: ::libc::c_double) ;
     pub fn pango_cairo_context_get_resolution(context: *mut PangoContext)
      -> ::libc::c_double;
     pub fn pango_cairo_context_set_shape_renderer(context: *mut PangoContext,
@@ -55,39 +55,39 @@ extern "C" {
                                                       PangoCairoShapeRendererFunc,
                                                   data: gpointer,
                                                   dnotify: GDestroyNotify)
-     -> ();
+     ;
     pub fn pango_cairo_context_get_shape_renderer(context: *mut PangoContext,
                                                   data: *mut gpointer)
      -> PangoCairoShapeRendererFunc;
     pub fn pango_cairo_create_context(cr: *mut cairo_t) -> *mut PangoContext;
     pub fn pango_cairo_create_layout(cr: *mut cairo_t) -> *mut PangoLayout;
     pub fn pango_cairo_update_layout(cr: *mut cairo_t,
-                                     layout: *mut PangoLayout) -> ();
+                                     layout: *mut PangoLayout) ;
     pub fn pango_cairo_show_glyph_string(cr: *mut cairo_t,
                                          font: *mut PangoFont,
-                                         glyphs: *mut PangoGlyphString) -> ();
+                                         glyphs: *mut PangoGlyphString) ;
     pub fn pango_cairo_show_glyph_item(cr: *mut cairo_t,
                                        text: *const ::libc::c_char,
-                                       glyph_item: *mut PangoGlyphItem) -> ();
+                                       glyph_item: *mut PangoGlyphItem) ;
     pub fn pango_cairo_show_layout_line(cr: *mut cairo_t,
-                                        line: *mut PangoLayoutLine) -> ();
+                                        line: *mut PangoLayoutLine) ;
     pub fn pango_cairo_show_layout(cr: *mut cairo_t, layout: *mut PangoLayout)
-     -> ();
+     ;
     pub fn pango_cairo_show_error_underline(cr: *mut cairo_t,
                                             x: ::libc::c_double,
                                             y: ::libc::c_double,
                                             width: ::libc::c_double,
-                                            height: ::libc::c_double) -> ();
+                                            height: ::libc::c_double) ;
     pub fn pango_cairo_glyph_string_path(cr: *mut cairo_t,
                                          font: *mut PangoFont,
-                                         glyphs: *mut PangoGlyphString) -> ();
+                                         glyphs: *mut PangoGlyphString) ;
     pub fn pango_cairo_layout_line_path(cr: *mut cairo_t,
-                                        line: *mut PangoLayoutLine) -> ();
+                                        line: *mut PangoLayoutLine) ;
     pub fn pango_cairo_layout_path(cr: *mut cairo_t, layout: *mut PangoLayout)
-     -> ();
+     ;
     pub fn pango_cairo_error_underline_path(cr: *mut cairo_t,
                                             x: ::libc::c_double,
                                             y: ::libc::c_double,
                                             width: ::libc::c_double,
-                                            height: ::libc::c_double) -> ();
+                                            height: ::libc::c_double) ;
 }

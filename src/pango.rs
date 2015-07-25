@@ -318,7 +318,7 @@ pub struct Struct__PangoAttrClass {
                                         -> *mut PangoAttribute>,
     pub destroy: ::std::option::Option<extern "C" fn(attr:
                                                          *mut PangoAttribute)
-                                           -> ()>,
+                                           >,
     pub equal: ::std::option::Option<extern "C" fn(attr1:
                                                        *const PangoAttribute,
                                                    attr2:
@@ -644,50 +644,50 @@ extern "C" {
     pub fn pango_coverage_new() -> *mut PangoCoverage;
     pub fn pango_coverage_ref(coverage: *mut PangoCoverage)
      -> *mut PangoCoverage;
-    pub fn pango_coverage_unref(coverage: *mut PangoCoverage) -> ();
+    pub fn pango_coverage_unref(coverage: *mut PangoCoverage) ;
     pub fn pango_coverage_copy(coverage: *mut PangoCoverage)
      -> *mut PangoCoverage;
     pub fn pango_coverage_get(coverage: *mut PangoCoverage,
                               index_: ::libc::c_int) -> PangoCoverageLevel;
     pub fn pango_coverage_set(coverage: *mut PangoCoverage,
                               index_: ::libc::c_int,
-                              level: PangoCoverageLevel) -> ();
+                              level: PangoCoverageLevel) ;
     pub fn pango_coverage_max(coverage: *mut PangoCoverage,
-                              other: *mut PangoCoverage) -> ();
+                              other: *mut PangoCoverage) ;
     pub fn pango_coverage_to_bytes(coverage: *mut PangoCoverage,
                                    bytes: *mut *mut guchar,
-                                   n_bytes: *mut ::libc::c_int) -> ();
+                                   n_bytes: *mut ::libc::c_int) ;
     pub fn pango_coverage_from_bytes(bytes: *mut guchar,
                                      n_bytes: ::libc::c_int)
      -> *mut PangoCoverage;
     pub fn pango_units_from_double(d: ::libc::c_double) -> ::libc::c_int;
     pub fn pango_units_to_double(i: ::libc::c_int) -> ::libc::c_double;
     pub fn pango_extents_to_pixels(inclusive: *mut PangoRectangle,
-                                   nearest: *mut PangoRectangle) -> ();
+                                   nearest: *mut PangoRectangle) ;
     pub fn pango_matrix_get_type() -> GType;
     pub fn pango_matrix_copy(matrix: *const PangoMatrix) -> *mut PangoMatrix;
-    pub fn pango_matrix_free(matrix: *mut PangoMatrix) -> ();
+    pub fn pango_matrix_free(matrix: *mut PangoMatrix) ;
     pub fn pango_matrix_translate(matrix: *mut PangoMatrix,
                                   tx: ::libc::c_double, ty: ::libc::c_double)
-     -> ();
+     ;
     pub fn pango_matrix_scale(matrix: *mut PangoMatrix,
                               scale_x: ::libc::c_double,
-                              scale_y: ::libc::c_double) -> ();
+                              scale_y: ::libc::c_double) ;
     pub fn pango_matrix_rotate(matrix: *mut PangoMatrix,
-                               degrees: ::libc::c_double) -> ();
+                               degrees: ::libc::c_double) ;
     pub fn pango_matrix_concat(matrix: *mut PangoMatrix,
-                               new_matrix: *const PangoMatrix) -> ();
+                               new_matrix: *const PangoMatrix) ;
     pub fn pango_matrix_transform_point(matrix: *const PangoMatrix,
                                         x: *mut ::libc::c_double,
-                                        y: *mut ::libc::c_double) -> ();
+                                        y: *mut ::libc::c_double) ;
     pub fn pango_matrix_transform_distance(matrix: *const PangoMatrix,
                                            dx: *mut ::libc::c_double,
-                                           dy: *mut ::libc::c_double) -> ();
+                                           dy: *mut ::libc::c_double) ;
     pub fn pango_matrix_transform_rectangle(matrix: *const PangoMatrix,
-                                            rect: *mut PangoRectangle) -> ();
+                                            rect: *mut PangoRectangle) ;
     pub fn pango_matrix_transform_pixel_rectangle(matrix: *const PangoMatrix,
                                                   rect: *mut PangoRectangle)
-     -> ();
+     ;
     pub fn pango_matrix_get_font_scale_factor(matrix: *const PangoMatrix)
      -> ::libc::c_double;
     pub fn pango_script_for_unichar(ch: gunichar) -> PangoScript;
@@ -697,9 +697,9 @@ extern "C" {
     pub fn pango_script_iter_get_range(iter: *mut PangoScriptIter,
                                        start: *mut *const ::libc::c_char,
                                        end: *mut *const ::libc::c_char,
-                                       script: *mut PangoScript) -> ();
+                                       script: *mut PangoScript) ;
     pub fn pango_script_iter_next(iter: *mut PangoScriptIter) -> gboolean;
-    pub fn pango_script_iter_free(iter: *mut PangoScriptIter) -> ();
+    pub fn pango_script_iter_free(iter: *mut PangoScriptIter) ;
     pub fn pango_language_get_type() -> GType;
     pub fn pango_language_from_string(language: *const ::libc::c_char)
      -> *mut PangoLanguage;
@@ -749,52 +749,52 @@ extern "C" {
     pub fn pango_font_description_equal(desc1: *const PangoFontDescription,
                                         desc2: *const PangoFontDescription)
      -> gboolean;
-    pub fn pango_font_description_free(desc: *mut PangoFontDescription) -> ();
+    pub fn pango_font_description_free(desc: *mut PangoFontDescription) ;
     pub fn pango_font_descriptions_free(descs: *mut *mut PangoFontDescription,
-                                        n_descs: ::libc::c_int) -> ();
+                                        n_descs: ::libc::c_int) ;
     pub fn pango_font_description_set_family(desc: *mut PangoFontDescription,
                                              family: *const ::libc::c_char)
-     -> ();
+     ;
     pub fn pango_font_description_set_family_static(desc:
                                                         *mut PangoFontDescription,
                                                     family:
                                                         *const ::libc::c_char)
-     -> ();
+     ;
     pub fn pango_font_description_get_family(desc:
                                                  *const PangoFontDescription)
      -> *const ::libc::c_char;
     pub fn pango_font_description_set_style(desc: *mut PangoFontDescription,
-                                            style: PangoStyle) -> ();
+                                            style: PangoStyle) ;
     pub fn pango_font_description_get_style(desc: *const PangoFontDescription)
      -> PangoStyle;
     pub fn pango_font_description_set_variant(desc: *mut PangoFontDescription,
-                                              variant: PangoVariant) -> ();
+                                              variant: PangoVariant) ;
     pub fn pango_font_description_get_variant(desc:
                                                   *const PangoFontDescription)
      -> PangoVariant;
     pub fn pango_font_description_set_weight(desc: *mut PangoFontDescription,
-                                             weight: PangoWeight) -> ();
+                                             weight: PangoWeight) ;
     pub fn pango_font_description_get_weight(desc:
                                                  *const PangoFontDescription)
      -> PangoWeight;
     pub fn pango_font_description_set_stretch(desc: *mut PangoFontDescription,
-                                              stretch: PangoStretch) -> ();
+                                              stretch: PangoStretch) ;
     pub fn pango_font_description_get_stretch(desc:
                                                   *const PangoFontDescription)
      -> PangoStretch;
     pub fn pango_font_description_set_size(desc: *mut PangoFontDescription,
-                                           size: gint) -> ();
+                                           size: gint) ;
     pub fn pango_font_description_get_size(desc: *const PangoFontDescription)
      -> gint;
     pub fn pango_font_description_set_absolute_size(desc:
                                                         *mut PangoFontDescription,
                                                     size: ::libc::c_double)
-     -> ();
+     ;
     pub fn pango_font_description_get_size_is_absolute(desc:
                                                            *const PangoFontDescription)
      -> gboolean;
     pub fn pango_font_description_set_gravity(desc: *mut PangoFontDescription,
-                                              gravity: PangoGravity) -> ();
+                                              gravity: PangoGravity) ;
     pub fn pango_font_description_get_gravity(desc:
                                                   *const PangoFontDescription)
      -> PangoGravity;
@@ -803,17 +803,17 @@ extern "C" {
      -> PangoFontMask;
     pub fn pango_font_description_unset_fields(desc:
                                                    *mut PangoFontDescription,
-                                               to_unset: PangoFontMask) -> ();
+                                               to_unset: PangoFontMask) ;
     pub fn pango_font_description_merge(desc: *mut PangoFontDescription,
                                         desc_to_merge:
                                             *const PangoFontDescription,
-                                        replace_existing: gboolean) -> ();
+                                        replace_existing: gboolean) ;
     pub fn pango_font_description_merge_static(desc:
                                                    *mut PangoFontDescription,
                                                desc_to_merge:
                                                    *const PangoFontDescription,
                                                replace_existing: gboolean)
-     -> ();
+     ;
     pub fn pango_font_description_better_match(desc:
                                                    *const PangoFontDescription,
                                                old_match:
@@ -831,7 +831,7 @@ extern "C" {
     pub fn pango_font_metrics_get_type() -> GType;
     pub fn pango_font_metrics_ref(metrics: *mut PangoFontMetrics)
      -> *mut PangoFontMetrics;
-    pub fn pango_font_metrics_unref(metrics: *mut PangoFontMetrics) -> ();
+    pub fn pango_font_metrics_unref(metrics: *mut PangoFontMetrics) ;
     pub fn pango_font_metrics_get_ascent(metrics: *mut PangoFontMetrics)
      -> ::libc::c_int;
     pub fn pango_font_metrics_get_descent(metrics: *mut PangoFontMetrics)
@@ -857,7 +857,7 @@ extern "C" {
     pub fn pango_font_family_get_type() -> GType;
     pub fn pango_font_family_list_faces(family: *mut PangoFontFamily,
                                         faces: *mut *mut *mut PangoFontFace,
-                                        n_faces: *mut ::libc::c_int) -> ();
+                                        n_faces: *mut ::libc::c_int) ;
     pub fn pango_font_family_get_name(family: *mut PangoFontFamily)
      -> *const ::libc::c_char;
     pub fn pango_font_family_is_monospace(family: *mut PangoFontFamily)
@@ -869,7 +869,7 @@ extern "C" {
      -> *const ::libc::c_char;
     pub fn pango_font_face_list_sizes(face: *mut PangoFontFace,
                                       sizes: *mut *mut ::libc::c_int,
-                                      n_sizes: *mut ::libc::c_int) -> ();
+                                      n_sizes: *mut ::libc::c_int) ;
     pub fn pango_font_face_is_synthesized(face: *mut PangoFontFace)
      -> gboolean;
     pub fn pango_font_get_type() -> GType;
@@ -890,11 +890,11 @@ extern "C" {
                                         glyph: PangoGlyph,
                                         ink_rect: *mut PangoRectangle,
                                         logical_rect: *mut PangoRectangle)
-     -> ();
+     ;
     pub fn pango_font_get_font_map(font: *mut PangoFont) -> *mut PangoFontMap;
     pub fn pango_color_get_type() -> GType;
     pub fn pango_color_copy(src: *const PangoColor) -> *mut PangoColor;
-    pub fn pango_color_free(color: *mut PangoColor) -> ();
+    pub fn pango_color_free(color: *mut PangoColor) ;
     pub fn pango_color_parse(color: *mut PangoColor,
                              spec: *const ::libc::c_char) -> gboolean;
     pub fn pango_color_to_string(color: *const PangoColor) -> *mut gchar;
@@ -902,10 +902,10 @@ extern "C" {
     pub fn pango_attr_type_get_name(_type: PangoAttrType)
      -> *const ::libc::c_char;
     pub fn pango_attribute_init(attr: *mut PangoAttribute,
-                                klass: *const PangoAttrClass) -> ();
+                                klass: *const PangoAttrClass) ;
     pub fn pango_attribute_copy(attr: *const PangoAttribute)
      -> *mut PangoAttribute;
-    pub fn pango_attribute_destroy(attr: *mut PangoAttribute) -> ();
+    pub fn pango_attribute_destroy(attr: *mut PangoAttribute) ;
     pub fn pango_attribute_equal(attr1: *const PangoAttribute,
                                  attr2: *const PangoAttribute) -> gboolean;
     pub fn pango_attr_language_new(language: *mut PangoLanguage)
@@ -961,38 +961,38 @@ extern "C" {
     pub fn pango_attr_list_new() -> *mut PangoAttrList;
     pub fn pango_attr_list_ref(list: *mut PangoAttrList)
      -> *mut PangoAttrList;
-    pub fn pango_attr_list_unref(list: *mut PangoAttrList) -> ();
+    pub fn pango_attr_list_unref(list: *mut PangoAttrList) ;
     pub fn pango_attr_list_copy(list: *mut PangoAttrList)
      -> *mut PangoAttrList;
     pub fn pango_attr_list_insert(list: *mut PangoAttrList,
-                                  attr: *mut PangoAttribute) -> ();
+                                  attr: *mut PangoAttribute) ;
     pub fn pango_attr_list_insert_before(list: *mut PangoAttrList,
-                                         attr: *mut PangoAttribute) -> ();
+                                         attr: *mut PangoAttribute) ;
     pub fn pango_attr_list_change(list: *mut PangoAttrList,
-                                  attr: *mut PangoAttribute) -> ();
+                                  attr: *mut PangoAttribute) ;
     pub fn pango_attr_list_splice(list: *mut PangoAttrList,
                                   other: *mut PangoAttrList, pos: gint,
-                                  len: gint) -> ();
+                                  len: gint) ;
     pub fn pango_attr_list_filter(list: *mut PangoAttrList,
                                   func: PangoAttrFilterFunc, data: gpointer)
      -> *mut PangoAttrList;
     pub fn pango_attr_list_get_iterator(list: *mut PangoAttrList)
      -> *mut PangoAttrIterator;
     pub fn pango_attr_iterator_range(iterator: *mut PangoAttrIterator,
-                                     start: *mut gint, end: *mut gint) -> ();
+                                     start: *mut gint, end: *mut gint) ;
     pub fn pango_attr_iterator_next(iterator: *mut PangoAttrIterator)
      -> gboolean;
     pub fn pango_attr_iterator_copy(iterator: *mut PangoAttrIterator)
      -> *mut PangoAttrIterator;
     pub fn pango_attr_iterator_destroy(iterator: *mut PangoAttrIterator)
-     -> ();
+     ;
     pub fn pango_attr_iterator_get(iterator: *mut PangoAttrIterator,
                                    _type: PangoAttrType)
      -> *mut PangoAttribute;
     pub fn pango_attr_iterator_get_font(iterator: *mut PangoAttrIterator,
                                         desc: *mut PangoFontDescription,
                                         language: *mut *mut PangoLanguage,
-                                        extra_attrs: *mut *mut GSList) -> ();
+                                        extra_attrs: *mut *mut GSList) ;
     pub fn pango_attr_iterator_get_attrs(iterator: *mut PangoAttrIterator)
      -> *mut GSList;
     pub fn pango_parse_markup(markup_text: *const ::libc::c_char,
@@ -1011,21 +1011,21 @@ extern "C" {
     pub fn pango_item_get_type() -> GType;
     pub fn pango_item_new() -> *mut PangoItem;
     pub fn pango_item_copy(item: *mut PangoItem) -> *mut PangoItem;
-    pub fn pango_item_free(item: *mut PangoItem) -> ();
+    pub fn pango_item_free(item: *mut PangoItem) ;
     pub fn pango_item_split(orig: *mut PangoItem, split_index: ::libc::c_int,
                             split_offset: ::libc::c_int) -> *mut PangoItem;
     pub fn pango_break(text: *const gchar, length: ::libc::c_int,
                        analysis: *mut PangoAnalysis, attrs: *mut PangoLogAttr,
-                       attrs_len: ::libc::c_int) -> ();
+                       attrs_len: ::libc::c_int) ;
     pub fn pango_find_paragraph_boundary(text: *const gchar, length: gint,
                                          paragraph_delimiter_index: *mut gint,
                                          next_paragraph_start: *mut gint)
-     -> ();
+     ;
     pub fn pango_get_log_attrs(text: *const ::libc::c_char,
                                length: ::libc::c_int, level: ::libc::c_int,
                                language: *mut PangoLanguage,
                                log_attrs: *mut PangoLogAttr,
-                               attrs_len: ::libc::c_int) -> ();
+                               attrs_len: ::libc::c_int) ;
     pub fn pango_fontset_get_type() -> GType;
     pub fn pango_fontset_get_font(fontset: *mut PangoFontset, wc: guint)
      -> *mut PangoFont;
@@ -1033,7 +1033,7 @@ extern "C" {
      -> *mut PangoFontMetrics;
     pub fn pango_fontset_foreach(fontset: *mut PangoFontset,
                                  func: PangoFontsetForeachFunc,
-                                 data: gpointer) -> ();
+                                 data: gpointer) ;
     pub fn pango_font_map_get_type() -> GType;
     pub fn pango_font_map_create_context(fontmap: *mut PangoFontMap)
      -> *mut PangoContext;
@@ -1049,21 +1049,21 @@ extern "C" {
     pub fn pango_font_map_list_families(fontmap: *mut PangoFontMap,
                                         families:
                                             *mut *mut *mut PangoFontFamily,
-                                        n_families: *mut ::libc::c_int) -> ();
+                                        n_families: *mut ::libc::c_int) ;
     pub fn pango_font_map_get_serial(fontmap: *mut PangoFontMap) -> guint;
-    pub fn pango_font_map_changed(fontmap: *mut PangoFontMap) -> ();
+    pub fn pango_font_map_changed(fontmap: *mut PangoFontMap) ;
     pub fn pango_context_get_type() -> GType;
     pub fn pango_context_new() -> *mut PangoContext;
-    pub fn pango_context_changed(context: *mut PangoContext) -> ();
+    pub fn pango_context_changed(context: *mut PangoContext) ;
     pub fn pango_context_set_font_map(context: *mut PangoContext,
-                                      font_map: *mut PangoFontMap) -> ();
+                                      font_map: *mut PangoFontMap) ;
     pub fn pango_context_get_font_map(context: *mut PangoContext)
      -> *mut PangoFontMap;
     pub fn pango_context_get_serial(context: *mut PangoContext) -> guint;
     pub fn pango_context_list_families(context: *mut PangoContext,
                                        families:
                                            *mut *mut *mut PangoFontFamily,
-                                       n_families: *mut ::libc::c_int) -> ();
+                                       n_families: *mut ::libc::c_int) ;
     pub fn pango_context_load_font(context: *mut PangoContext,
                                    desc: *const PangoFontDescription)
      -> *mut PangoFont;
@@ -1078,29 +1078,29 @@ extern "C" {
     pub fn pango_context_set_font_description(context: *mut PangoContext,
                                               desc:
                                                   *const PangoFontDescription)
-     -> ();
+     ;
     pub fn pango_context_get_font_description(context: *mut PangoContext)
      -> *mut PangoFontDescription;
     pub fn pango_context_get_language(context: *mut PangoContext)
      -> *mut PangoLanguage;
     pub fn pango_context_set_language(context: *mut PangoContext,
-                                      language: *mut PangoLanguage) -> ();
+                                      language: *mut PangoLanguage) ;
     pub fn pango_context_set_base_dir(context: *mut PangoContext,
-                                      direction: PangoDirection) -> ();
+                                      direction: PangoDirection) ;
     pub fn pango_context_get_base_dir(context: *mut PangoContext)
      -> PangoDirection;
     pub fn pango_context_set_base_gravity(context: *mut PangoContext,
-                                          gravity: PangoGravity) -> ();
+                                          gravity: PangoGravity) ;
     pub fn pango_context_get_base_gravity(context: *mut PangoContext)
      -> PangoGravity;
     pub fn pango_context_get_gravity(context: *mut PangoContext)
      -> PangoGravity;
     pub fn pango_context_set_gravity_hint(context: *mut PangoContext,
-                                          hint: PangoGravityHint) -> ();
+                                          hint: PangoGravityHint) ;
     pub fn pango_context_get_gravity_hint(context: *mut PangoContext)
      -> PangoGravityHint;
     pub fn pango_context_set_matrix(context: *mut PangoContext,
-                                    matrix: *const PangoMatrix) -> ();
+                                    matrix: *const PangoMatrix) ;
     pub fn pango_context_get_matrix(context: *mut PangoContext)
      -> *const PangoMatrix;
     pub fn pango_itemize(context: *mut PangoContext,
@@ -1118,16 +1118,16 @@ extern "C" {
      -> *mut GList;
     pub fn pango_glyph_string_new() -> *mut PangoGlyphString;
     pub fn pango_glyph_string_set_size(string: *mut PangoGlyphString,
-                                       new_len: gint) -> ();
+                                       new_len: gint) ;
     pub fn pango_glyph_string_get_type() -> GType;
     pub fn pango_glyph_string_copy(string: *mut PangoGlyphString)
      -> *mut PangoGlyphString;
-    pub fn pango_glyph_string_free(string: *mut PangoGlyphString) -> ();
+    pub fn pango_glyph_string_free(string: *mut PangoGlyphString) ;
     pub fn pango_glyph_string_extents(glyphs: *mut PangoGlyphString,
                                       font: *mut PangoFont,
                                       ink_rect: *mut PangoRectangle,
                                       logical_rect: *mut PangoRectangle)
-     -> ();
+     ;
     pub fn pango_glyph_string_get_width(glyphs: *mut PangoGlyphString)
      -> ::libc::c_int;
     pub fn pango_glyph_string_extents_range(glyphs: *mut PangoGlyphString,
@@ -1136,7 +1136,7 @@ extern "C" {
                                             font: *mut PangoFont,
                                             ink_rect: *mut PangoRectangle,
                                             logical_rect: *mut PangoRectangle)
-     -> ();
+     ;
     pub fn pango_glyph_string_get_logical_widths(glyphs:
                                                      *mut PangoGlyphString,
                                                  text: *const ::libc::c_char,
@@ -1145,29 +1145,29 @@ extern "C" {
                                                      ::libc::c_int,
                                                  logical_widths:
                                                      *mut ::libc::c_int)
-     -> ();
+     ;
     pub fn pango_glyph_string_index_to_x(glyphs: *mut PangoGlyphString,
                                          text: *mut ::libc::c_char,
                                          length: ::libc::c_int,
                                          analysis: *mut PangoAnalysis,
                                          index_: ::libc::c_int,
                                          trailing: gboolean,
-                                         x_pos: *mut ::libc::c_int) -> ();
+                                         x_pos: *mut ::libc::c_int) ;
     pub fn pango_glyph_string_x_to_index(glyphs: *mut PangoGlyphString,
                                          text: *mut ::libc::c_char,
                                          length: ::libc::c_int,
                                          analysis: *mut PangoAnalysis,
                                          x_pos: ::libc::c_int,
                                          index_: *mut ::libc::c_int,
-                                         trailing: *mut ::libc::c_int) -> ();
+                                         trailing: *mut ::libc::c_int) ;
     pub fn pango_shape(text: *const gchar, length: gint,
                        analysis: *const PangoAnalysis,
-                       glyphs: *mut PangoGlyphString) -> ();
+                       glyphs: *mut PangoGlyphString) ;
     pub fn pango_shape_full(item_text: *const gchar, item_length: gint,
                             paragraph_text: *const gchar,
                             paragraph_length: gint,
                             analysis: *const PangoAnalysis,
-                            glyphs: *mut PangoGlyphString) -> ();
+                            glyphs: *mut PangoGlyphString) ;
     pub fn pango_reorder_items(logical_items: *mut GList) -> *mut GList;
     pub fn pango_attr_type_get_type() -> GType;
     pub fn pango_underline_get_type() -> GType;
@@ -1194,7 +1194,7 @@ extern "C" {
      -> *mut PangoGlyphItem;
     pub fn pango_glyph_item_copy(orig: *mut PangoGlyphItem)
      -> *mut PangoGlyphItem;
-    pub fn pango_glyph_item_free(glyph_item: *mut PangoGlyphItem) -> ();
+    pub fn pango_glyph_item_free(glyph_item: *mut PangoGlyphItem) ;
     pub fn pango_glyph_item_apply_attrs(glyph_item: *mut PangoGlyphItem,
                                         text: *const ::libc::c_char,
                                         list: *mut PangoAttrList)
@@ -1202,16 +1202,16 @@ extern "C" {
     pub fn pango_glyph_item_letter_space(glyph_item: *mut PangoGlyphItem,
                                          text: *const ::libc::c_char,
                                          log_attrs: *mut PangoLogAttr,
-                                         letter_spacing: ::libc::c_int) -> ();
+                                         letter_spacing: ::libc::c_int) ;
     pub fn pango_glyph_item_get_logical_widths(glyph_item:
                                                    *mut PangoGlyphItem,
                                                text: *const ::libc::c_char,
                                                logical_widths:
-                                                   *mut ::libc::c_int) -> ();
+                                                   *mut ::libc::c_int) ;
     pub fn pango_glyph_item_iter_get_type() -> GType;
     pub fn pango_glyph_item_iter_copy(orig: *mut PangoGlyphItemIter)
      -> *mut PangoGlyphItemIter;
-    pub fn pango_glyph_item_iter_free(iter: *mut PangoGlyphItemIter) -> ();
+    pub fn pango_glyph_item_iter_free(iter: *mut PangoGlyphItemIter) ;
     pub fn pango_glyph_item_iter_init_start(iter: *mut PangoGlyphItemIter,
                                             glyph_item: *mut PangoGlyphItem,
                                             text: *const ::libc::c_char)
@@ -1235,20 +1235,20 @@ extern "C" {
     pub fn pango_tab_array_get_type() -> GType;
     pub fn pango_tab_array_copy(src: *mut PangoTabArray)
      -> *mut PangoTabArray;
-    pub fn pango_tab_array_free(tab_array: *mut PangoTabArray) -> ();
+    pub fn pango_tab_array_free(tab_array: *mut PangoTabArray) ;
     pub fn pango_tab_array_get_size(tab_array: *mut PangoTabArray) -> gint;
     pub fn pango_tab_array_resize(tab_array: *mut PangoTabArray,
-                                  new_size: gint) -> ();
+                                  new_size: gint) ;
     pub fn pango_tab_array_set_tab(tab_array: *mut PangoTabArray,
                                    tab_index: gint, alignment: PangoTabAlign,
-                                   location: gint) -> ();
+                                   location: gint) ;
     pub fn pango_tab_array_get_tab(tab_array: *mut PangoTabArray,
                                    tab_index: gint,
                                    alignment: *mut PangoTabAlign,
-                                   location: *mut gint) -> ();
+                                   location: *mut gint) ;
     pub fn pango_tab_array_get_tabs(tab_array: *mut PangoTabArray,
                                     alignments: *mut *mut PangoTabAlign,
-                                    locations: *mut *mut gint) -> ();
+                                    locations: *mut *mut gint) ;
     pub fn pango_tab_array_get_positions_in_pixels(tab_array:
                                                        *mut PangoTabArray)
      -> gboolean;
@@ -1258,92 +1258,92 @@ extern "C" {
     pub fn pango_layout_get_context(layout: *mut PangoLayout)
      -> *mut PangoContext;
     pub fn pango_layout_set_attributes(layout: *mut PangoLayout,
-                                       attrs: *mut PangoAttrList) -> ();
+                                       attrs: *mut PangoAttrList) ;
     pub fn pango_layout_get_attributes(layout: *mut PangoLayout)
      -> *mut PangoAttrList;
     pub fn pango_layout_set_text(layout: *mut PangoLayout,
                                  text: *const ::libc::c_char,
-                                 length: ::libc::c_int) -> ();
+                                 length: ::libc::c_int) ;
     pub fn pango_layout_get_text(layout: *mut PangoLayout)
      -> *const ::libc::c_char;
     pub fn pango_layout_get_character_count(layout: *mut PangoLayout) -> gint;
     pub fn pango_layout_set_markup(layout: *mut PangoLayout,
                                    markup: *const ::libc::c_char,
-                                   length: ::libc::c_int) -> ();
+                                   length: ::libc::c_int) ;
     pub fn pango_layout_set_markup_with_accel(layout: *mut PangoLayout,
                                               markup: *const ::libc::c_char,
                                               length: ::libc::c_int,
                                               accel_marker: gunichar,
                                               accel_char: *mut gunichar)
-     -> ();
+     ;
     pub fn pango_layout_set_font_description(layout: *mut PangoLayout,
                                              desc:
                                                  *const PangoFontDescription)
-     -> ();
+     ;
     pub fn pango_layout_get_font_description(layout: *mut PangoLayout)
      -> *const PangoFontDescription;
     pub fn pango_layout_set_width(layout: *mut PangoLayout,
-                                  width: ::libc::c_int) -> ();
+                                  width: ::libc::c_int) ;
     pub fn pango_layout_get_width(layout: *mut PangoLayout) -> ::libc::c_int;
     pub fn pango_layout_set_height(layout: *mut PangoLayout,
-                                   height: ::libc::c_int) -> ();
+                                   height: ::libc::c_int) ;
     pub fn pango_layout_get_height(layout: *mut PangoLayout) -> ::libc::c_int;
     pub fn pango_layout_set_wrap(layout: *mut PangoLayout,
-                                 wrap: PangoWrapMode) -> ();
+                                 wrap: PangoWrapMode) ;
     pub fn pango_layout_get_wrap(layout: *mut PangoLayout) -> PangoWrapMode;
     pub fn pango_layout_is_wrapped(layout: *mut PangoLayout) -> gboolean;
     pub fn pango_layout_set_indent(layout: *mut PangoLayout,
-                                   indent: ::libc::c_int) -> ();
+                                   indent: ::libc::c_int) ;
     pub fn pango_layout_get_indent(layout: *mut PangoLayout) -> ::libc::c_int;
     pub fn pango_layout_set_spacing(layout: *mut PangoLayout,
-                                    spacing: ::libc::c_int) -> ();
+                                    spacing: ::libc::c_int) ;
     pub fn pango_layout_get_spacing(layout: *mut PangoLayout)
      -> ::libc::c_int;
     pub fn pango_layout_set_justify(layout: *mut PangoLayout,
-                                    justify: gboolean) -> ();
+                                    justify: gboolean) ;
     pub fn pango_layout_get_justify(layout: *mut PangoLayout) -> gboolean;
     pub fn pango_layout_set_auto_dir(layout: *mut PangoLayout,
-                                     auto_dir: gboolean) -> ();
+                                     auto_dir: gboolean) ;
     pub fn pango_layout_get_auto_dir(layout: *mut PangoLayout) -> gboolean;
     pub fn pango_layout_set_alignment(layout: *mut PangoLayout,
-                                      alignment: PangoAlignment) -> ();
+                                      alignment: PangoAlignment) ;
     pub fn pango_layout_get_alignment(layout: *mut PangoLayout)
      -> PangoAlignment;
     pub fn pango_layout_set_tabs(layout: *mut PangoLayout,
-                                 tabs: *mut PangoTabArray) -> ();
+                                 tabs: *mut PangoTabArray) ;
     pub fn pango_layout_get_tabs(layout: *mut PangoLayout)
      -> *mut PangoTabArray;
     pub fn pango_layout_set_single_paragraph_mode(layout: *mut PangoLayout,
-                                                  setting: gboolean) -> ();
+                                                  setting: gboolean) ;
     pub fn pango_layout_get_single_paragraph_mode(layout: *mut PangoLayout)
      -> gboolean;
     pub fn pango_layout_set_ellipsize(layout: *mut PangoLayout,
-                                      ellipsize: PangoEllipsizeMode) -> ();
+                                      ellipsize: PangoEllipsizeMode) ;
     pub fn pango_layout_get_ellipsize(layout: *mut PangoLayout)
      -> PangoEllipsizeMode;
     pub fn pango_layout_is_ellipsized(layout: *mut PangoLayout) -> gboolean;
     pub fn pango_layout_get_unknown_glyphs_count(layout: *mut PangoLayout)
      -> ::libc::c_int;
-    pub fn pango_layout_context_changed(layout: *mut PangoLayout) -> ();
+    pub fn pango_layout_context_changed(layout: *mut PangoLayout) ;
     pub fn pango_layout_get_serial(layout: *mut PangoLayout) -> guint;
     pub fn pango_layout_get_log_attrs(layout: *mut PangoLayout,
                                       attrs: *mut *mut PangoLogAttr,
-                                      n_attrs: *mut gint) -> ();
+                                      n_attrs: *mut gint) ;
     pub fn pango_layout_get_log_attrs_readonly(layout: *mut PangoLayout,
                                                n_attrs: *mut gint)
      -> *const PangoLogAttr;
     pub fn pango_layout_index_to_pos(layout: *mut PangoLayout,
                                      index_: ::libc::c_int,
-                                     pos: *mut PangoRectangle) -> ();
+                                     pos: *mut PangoRectangle) ;
     pub fn pango_layout_index_to_line_x(layout: *mut PangoLayout,
                                         index_: ::libc::c_int,
                                         trailing: gboolean,
                                         line: *mut ::libc::c_int,
-                                        x_pos: *mut ::libc::c_int) -> ();
+                                        x_pos: *mut ::libc::c_int) ;
     pub fn pango_layout_get_cursor_pos(layout: *mut PangoLayout,
                                        index_: ::libc::c_int,
                                        strong_pos: *mut PangoRectangle,
-                                       weak_pos: *mut PangoRectangle) -> ();
+                                       weak_pos: *mut PangoRectangle) ;
     pub fn pango_layout_move_cursor_visually(layout: *mut PangoLayout,
                                              strong: gboolean,
                                              old_index: ::libc::c_int,
@@ -1351,24 +1351,24 @@ extern "C" {
                                              direction: ::libc::c_int,
                                              new_index: *mut ::libc::c_int,
                                              new_trailing: *mut ::libc::c_int)
-     -> ();
+     ;
     pub fn pango_layout_xy_to_index(layout: *mut PangoLayout,
                                     x: ::libc::c_int, y: ::libc::c_int,
                                     index_: *mut ::libc::c_int,
                                     trailing: *mut ::libc::c_int) -> gboolean;
     pub fn pango_layout_get_extents(layout: *mut PangoLayout,
                                     ink_rect: *mut PangoRectangle,
-                                    logical_rect: *mut PangoRectangle) -> ();
+                                    logical_rect: *mut PangoRectangle) ;
     pub fn pango_layout_get_pixel_extents(layout: *mut PangoLayout,
                                           ink_rect: *mut PangoRectangle,
                                           logical_rect: *mut PangoRectangle)
-     -> ();
+     ;
     pub fn pango_layout_get_size(layout: *mut PangoLayout,
                                  width: *mut ::libc::c_int,
-                                 height: *mut ::libc::c_int) -> ();
+                                 height: *mut ::libc::c_int) ;
     pub fn pango_layout_get_pixel_size(layout: *mut PangoLayout,
                                        width: *mut ::libc::c_int,
-                                       height: *mut ::libc::c_int) -> ();
+                                       height: *mut ::libc::c_int) ;
     pub fn pango_layout_get_baseline(layout: *mut PangoLayout)
      -> ::libc::c_int;
     pub fn pango_layout_get_line_count(layout: *mut PangoLayout)
@@ -1384,7 +1384,7 @@ extern "C" {
     pub fn pango_layout_line_get_type() -> GType;
     pub fn pango_layout_line_ref(line: *mut PangoLayoutLine)
      -> *mut PangoLayoutLine;
-    pub fn pango_layout_line_unref(line: *mut PangoLayoutLine) -> ();
+    pub fn pango_layout_line_unref(line: *mut PangoLayoutLine) ;
     pub fn pango_layout_line_x_to_index(line: *mut PangoLayoutLine,
                                         x_pos: ::libc::c_int,
                                         index_: *mut ::libc::c_int,
@@ -1393,27 +1393,27 @@ extern "C" {
     pub fn pango_layout_line_index_to_x(line: *mut PangoLayoutLine,
                                         index_: ::libc::c_int,
                                         trailing: gboolean,
-                                        x_pos: *mut ::libc::c_int) -> ();
+                                        x_pos: *mut ::libc::c_int) ;
     pub fn pango_layout_line_get_x_ranges(line: *mut PangoLayoutLine,
                                           start_index: ::libc::c_int,
                                           end_index: ::libc::c_int,
                                           ranges: *mut *mut ::libc::c_int,
-                                          n_ranges: *mut ::libc::c_int) -> ();
+                                          n_ranges: *mut ::libc::c_int) ;
     pub fn pango_layout_line_get_extents(line: *mut PangoLayoutLine,
                                          ink_rect: *mut PangoRectangle,
                                          logical_rect: *mut PangoRectangle)
-     -> ();
+     ;
     pub fn pango_layout_line_get_pixel_extents(layout_line:
                                                    *mut PangoLayoutLine,
                                                ink_rect: *mut PangoRectangle,
                                                logical_rect:
-                                                   *mut PangoRectangle) -> ();
+                                                   *mut PangoRectangle) ;
     pub fn pango_layout_iter_get_type() -> GType;
     pub fn pango_layout_get_iter(layout: *mut PangoLayout)
      -> *mut PangoLayoutIter;
     pub fn pango_layout_iter_copy(iter: *mut PangoLayoutIter)
      -> *mut PangoLayoutIter;
-    pub fn pango_layout_iter_free(iter: *mut PangoLayoutIter) -> ();
+    pub fn pango_layout_iter_free(iter: *mut PangoLayoutIter) ;
     pub fn pango_layout_iter_get_index(iter: *mut PangoLayoutIter)
      -> ::libc::c_int;
     pub fn pango_layout_iter_get_run(iter: *mut PangoLayoutIter)
@@ -1437,60 +1437,60 @@ extern "C" {
      -> gboolean;
     pub fn pango_layout_iter_get_char_extents(iter: *mut PangoLayoutIter,
                                               logical_rect:
-                                                  *mut PangoRectangle) -> ();
+                                                  *mut PangoRectangle) ;
     pub fn pango_layout_iter_get_cluster_extents(iter: *mut PangoLayoutIter,
                                                  ink_rect:
                                                      *mut PangoRectangle,
                                                  logical_rect:
                                                      *mut PangoRectangle)
-     -> ();
+     ;
     pub fn pango_layout_iter_get_run_extents(iter: *mut PangoLayoutIter,
                                              ink_rect: *mut PangoRectangle,
                                              logical_rect:
-                                                 *mut PangoRectangle) -> ();
+                                                 *mut PangoRectangle) ;
     pub fn pango_layout_iter_get_line_extents(iter: *mut PangoLayoutIter,
                                               ink_rect: *mut PangoRectangle,
                                               logical_rect:
-                                                  *mut PangoRectangle) -> ();
+                                                  *mut PangoRectangle) ;
     pub fn pango_layout_iter_get_line_yrange(iter: *mut PangoLayoutIter,
                                              y0_: *mut ::libc::c_int,
-                                             y1_: *mut ::libc::c_int) -> ();
+                                             y1_: *mut ::libc::c_int) ;
     pub fn pango_layout_iter_get_layout_extents(iter: *mut PangoLayoutIter,
                                                 ink_rect: *mut PangoRectangle,
                                                 logical_rect:
                                                     *mut PangoRectangle)
-     -> ();
+     ;
     pub fn pango_layout_iter_get_baseline(iter: *mut PangoLayoutIter)
      -> ::libc::c_int;
     pub fn pango_renderer_get_type() -> GType;
     pub fn pango_renderer_draw_layout(renderer: *mut PangoRenderer,
                                       layout: *mut PangoLayout,
                                       x: ::libc::c_int, y: ::libc::c_int)
-     -> ();
+     ;
     pub fn pango_renderer_draw_layout_line(renderer: *mut PangoRenderer,
                                            line: *mut PangoLayoutLine,
                                            x: ::libc::c_int, y: ::libc::c_int)
-     -> ();
+     ;
     pub fn pango_renderer_draw_glyphs(renderer: *mut PangoRenderer,
                                       font: *mut PangoFont,
                                       glyphs: *mut PangoGlyphString,
                                       x: ::libc::c_int, y: ::libc::c_int)
-     -> ();
+     ;
     pub fn pango_renderer_draw_glyph_item(renderer: *mut PangoRenderer,
                                           text: *const ::libc::c_char,
                                           glyph_item: *mut PangoGlyphItem,
                                           x: ::libc::c_int, y: ::libc::c_int)
-     -> ();
+     ;
     pub fn pango_renderer_draw_rectangle(renderer: *mut PangoRenderer,
                                          part: PangoRenderPart,
                                          x: ::libc::c_int, y: ::libc::c_int,
                                          width: ::libc::c_int,
-                                         height: ::libc::c_int) -> ();
+                                         height: ::libc::c_int) ;
     pub fn pango_renderer_draw_error_underline(renderer: *mut PangoRenderer,
                                                x: ::libc::c_int,
                                                y: ::libc::c_int,
                                                width: ::libc::c_int,
-                                               height: ::libc::c_int) -> ();
+                                               height: ::libc::c_int) ;
     pub fn pango_renderer_draw_trapezoid(renderer: *mut PangoRenderer,
                                          part: PangoRenderPart,
                                          y1_: ::libc::c_double,
@@ -1498,22 +1498,22 @@ extern "C" {
                                          x21: ::libc::c_double,
                                          y2: ::libc::c_double,
                                          x12: ::libc::c_double,
-                                         x22: ::libc::c_double) -> ();
+                                         x22: ::libc::c_double) ;
     pub fn pango_renderer_draw_glyph(renderer: *mut PangoRenderer,
                                      font: *mut PangoFont, glyph: PangoGlyph,
                                      x: ::libc::c_double, y: ::libc::c_double)
-     -> ();
-    pub fn pango_renderer_activate(renderer: *mut PangoRenderer) -> ();
-    pub fn pango_renderer_deactivate(renderer: *mut PangoRenderer) -> ();
+     ;
+    pub fn pango_renderer_activate(renderer: *mut PangoRenderer) ;
+    pub fn pango_renderer_deactivate(renderer: *mut PangoRenderer) ;
     pub fn pango_renderer_part_changed(renderer: *mut PangoRenderer,
-                                       part: PangoRenderPart) -> ();
+                                       part: PangoRenderPart) ;
     pub fn pango_renderer_set_color(renderer: *mut PangoRenderer,
                                     part: PangoRenderPart,
-                                    color: *const PangoColor) -> ();
+                                    color: *const PangoColor) ;
     pub fn pango_renderer_get_color(renderer: *mut PangoRenderer,
                                     part: PangoRenderPart) -> *mut PangoColor;
     pub fn pango_renderer_set_matrix(renderer: *mut PangoRenderer,
-                                     matrix: *const PangoMatrix) -> ();
+                                     matrix: *const PangoMatrix) ;
     pub fn pango_renderer_get_matrix(renderer: *mut PangoRenderer)
      -> *const PangoMatrix;
     pub fn pango_renderer_get_layout(renderer: *mut PangoRenderer)
@@ -1549,7 +1549,7 @@ extern "C" {
                                stretch: *mut PangoStretch, warn: gboolean)
      -> gboolean;
     pub fn pango_quantize_line_geometry(thickness: *mut ::libc::c_int,
-                                        position: *mut ::libc::c_int) -> ();
+                                        position: *mut ::libc::c_int) ;
     pub fn pango_log2vis_get_embedding_levels(text: *const gchar,
                                               length: ::libc::c_int,
                                               pbase_dir: *mut PangoDirection)

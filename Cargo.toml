@@ -1,14 +1,18 @@
 [package]
-name = "pangocairo-sys"
+name = "silverknife-pangocairo-sys"
 version = "0.1.0"
 
+description = "Bindings for libpangocairo"
 license = "MIT"
 authors = ["Jameson Ernst <j.patrick.ernst@gmail.com>"]
-keywords = ["pangocairo", "pango", "cairo", "text", "drawing", "2D", "graphics"]
+keywords = ["silverknife", "pangocairo", "pango", "cairo"]
+repository = "https://github.com/jpernst/pangocairo-sys"
 
 build = "build.rs"
 links = "pangocairo"
 
+[lib]
+name = "pangocairo_sys"
 
 [build-dependencies]
 pkg-config = "0.3"
